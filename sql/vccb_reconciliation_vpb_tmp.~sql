@@ -1,0 +1,26 @@
+create table vccb_reconciliation_vpb_tmp
+(
+MERCHANT_ID varchar2(15),
+TERMINAL_ID varchar2(15),
+TRANS_TYPE varchar2(15),
+REQUEST_CATEGORY varchar2(15),
+TRANS_DATETIME DATE,
+APPROVE_CODE varchar2(15),
+CARD_NO varchar2(19),
+CRD_TYPE varchar2(15),
+CURR_TYPE varchar2(15),
+TRANS_AMOUNT number(18,2),
+FEE_AMOUNT number(18,2),
+VAT_AMOUNT number(18,2),
+REFERENCE_NO varchar2(50),
+STATUS varchar2(15),
+TRANS_CONDITION varchar2(100),
+CONTRACT_NAME varchar(250),
+ORDER_ID varchar2(15),
+CYBERS_ORDER_ID varchar2(15),
+CYBERS_PURCH_ID varchar2(15)
+FILE_ID NUMBER(10),
+IMP_REC_ID NUMBER(22)
+)
+
+

@@ -1,0 +1,65 @@
+-- Create table
+create table VCCB_SCHEDULE_JOB
+(
+  id                 NUMBER(18),
+  task_order          NUMBER(8),
+  task_type           VARCHAR2(50),
+  task_name           VARCHAR2(255),
+  run_time           NUMBER(4),
+  process_num        NUMBER(1),
+  frequency          VARCHAR2(15),
+  day_of_week        NUMBER(2) DEFAULT NULL,
+  day_of_month       NUMBER(2) DEFAULT NULL,
+  config_key_name    VARCHAR2(500) DEFAULT NULL,
+  connection_string  VARCHAR2(255) DEFAULT NULL,
+  script             VARCHAR2(4000) DEFAULT NULL,
+  output_name    VARCHAR2(1000) DEFAULT NULL,
+  src_folder_name        VARCHAR2(250) DEFAULT NULL,
+  src_file_name          VARCHAR2(500) DEFAULT NULL,
+  src_file_type          VARCHAR2(15) DEFAULT NULL,
+  dst_folder_name VARCHAR2(250) DEFAULT NULL,
+  dst_file_name          VARCHAR2(500) DEFAULT NULL,
+  dst_file_type          VARCHAR2(15) DEFAULT NULL,
+  is_header          NUMBER(1) DEFAULT NULL,
+  is_notification    NUMBER(1) DEFAULT 0,
+  is_attachment NUMBER(1) DEFAULT 0,
+  email VARCHAR2(1000) DEFAULT NULL,
+  start_date         DATE,
+  end_date           DATE,
+  active             NUMBER(1) DEFAULT  1,
+  task_time_out      NUMBER(8) DEFAULT 0,
+  retry_number       NUMBER(2) DEFAULT 0,
+  request_department VARCHAR2(255) DEFAULT NULL,
+  request_user       VARCHAR2(255) DEFAULT NULL,
+  request_date       DATE DEFAULT NULL,
+  process_user       VARCHAR2(255),
+  process_date       DATE,
+  rec_created_date   DATE,
+  rec_updated_date   DATE
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table VCCB_SCHEDULE_JOB
+  add constraint VCCB_SCHEDULE_JOB_UNIQUE unique (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

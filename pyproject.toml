@@ -1,0 +1,87 @@
+[tool.poetry]
+name = "task-flow-service"
+version = "0.1.0"
+description = "Service auto report"
+authors = ["Nguyen Phuoc Tan <nptan2005@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["scheduler", "report", "service"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+packages = [
+    { include = "utilities"},
+    { include = "multiAlgoCoder"},
+    { include = "core_config"},
+    { include = "db_conn"},
+    { include = "conn_kit"},
+    { include = "data_kit"},
+    { include = "externalTaskModule"},
+    { include = "task_flow"},
+    { include = "encode_password.py"},
+    { include = "run_service.py"},
+    { include = "test_send_email.py"},
+    { include = "test_job.py"},
+    { include = "bin"}
+]
+# [tool.poetry.include]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+appnope = "^0.1.4"
+backcall = "^0.2.0"
+cx-oracle = "^8.3.0"
+cycler = "^0.12.1"
+decorator = "^5.1.1"
+ipython = "^8.26.0"
+ipython-genutils = "^0.2.0"
+jedi = "^0.19.1"
+kiwisolver = "^1.4.5"
+matplotlib = "^3.9.0"
+numpy = "^2.0.0"
+pandas = "^2.2.2"
+parso = "^0.8.4"
+pexpect = "^4.9.0"
+pickleshare = "^0.7.5"
+pretty-html-table = "^0.9.16"
+prompt-toolkit = "^3.0.47"
+ptyprocess = "^0.7.0"
+pygments = "^2.18.0"
+pyparsing = "^3.1.2"
+python-dateutil = "^2.9.0.post0"
+pytz = "^2024.1"
+schedule = "^1.2.2"
+six = "^1.16.0"
+traitlets = "^5.14.3"
+wcwidth = "^0.2.13"
+xlsxwriter = "^3.2.0"
+pathlib = "^1.0.1"
+cryptography = "^42.0.8"
+openpyxl = "^3.1.5"
+hexdump = "^3.3"
+black = "^24.4.2"
+pyemv = "^1.5.0"
+ebcdic = "^1.1.1"
+pyiso8583 = "^3.0.0"
+dask = "^2024.8.1"
+paramiko = "^3.4.1"
+pydantic = {extras = ["email"], version = "^2.8.2"}
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.4.0"
+pyyaml = "^6.0.2"
+cachetools = "^5.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+encode_password = "encode_password:main"
+test_job = "test_job:main"
+run_task_service = "run_service:main"
+

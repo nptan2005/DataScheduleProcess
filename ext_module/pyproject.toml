@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "ext_module"
+version = "0.1.0"
+description = "external module"
+authors = ["Nguyen Phuoc Tan <nptan2005@gmail.com>"]
+packages = [{ include = "src" }]
+license = "MIT"
+readme = "README.md"
+keywords = ["A"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11.2"
+cryptography = "^42.0.8"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."poetry.plugin"]
+poetry-plugin-export = "^1.8.0"
+
+# [tool.poetry.scripts]
+# start = "main:main"

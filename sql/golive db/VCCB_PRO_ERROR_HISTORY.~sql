@@ -1,0 +1,10 @@
+-- Create table
+create table VCCB_PRO_ERROR_HISTORY
+(
+  task       VARCHAR2(255),
+  error_msg  VARCHAR2(4000),
+  note       VARCHAR2(4000),
+  error_date DATE,
+  task_id    NUMBER(20)
+)
+;

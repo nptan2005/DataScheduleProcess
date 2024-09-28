@@ -1,0 +1,60 @@
+CREATE TABLE vccb_atom_pos_settl_txn_imp
+(
+  record_date DATE,
+  merchant_name varchar2(250),
+  master_merchant varchar2(250),
+  merchant_id VARCHAR2(20),
+  terminal_id VARCHAR2(20),
+  serial_no VARCHAR2(100),
+  batch_no VARCHAR2(15),
+  invoice_no VARCHAR2(15),
+  Card_number Varchar2(20),
+  card_type varchar2(15),
+  card_origin number(1),
+  Request_amount NUMBER(18,2),
+  is_settle NUMBER(1),
+  is_void NUMBER(1),
+  is_reversal NUMBER(1),
+  auth_id_reponse varchar2(100),
+  issuer_bank varchar2(15),
+  orig_txn_date DATE,
+  response_code VARCHAR2(3),
+  retrieval_ref_no varchar2(15),
+  settle_unix_time DATE,
+  txn_id varchar2(50),
+  void_txn_id varchar2(50),
+  void_unix_time varchar2(15),
+  reversal_txn_id varchar2(50),
+  reversal_time varchar2(15),
+  merchant_fee_rate number(4,2),
+  master_merchant_fee_rate number(4,2),
+  Cost_price_rate number(4,2),
+  mcc varchar2(250),
+  acq_bank_code varchar2(15),
+  transaction_type varchar2(15),
+  Pos_entry_mode varchar2(6),
+  master_merchant_fee number(18,2),
+  acq_bank_fee number(18,2),
+  bvb_credit_amt number(18,2),
+  discount_amt number(18,2),
+  merchant_credit_amt number(18,2),
+  account_number varchar(20),
+  account_name varchar(250),
+  FILE_ID NUMBER(10),
+  IMP_REC_ID NUMBER(22),
+	IMPORT_DATE DATE,
+  IMP_SESSION NUMBER(3),
+  rec_created_date date,
+  rec_updated_date date,
+  is_processed NUMBER(1),
+  posting_rscode varchar2(2),
+  posting_rsdesc varchar2(100),
+  posting_date date
+     
+)
+PARTITION BY RANGE(IMPORT_DATE) INTERVAL (NUMTOYMINTERVAL(1,'MONTH'))  
+(PARTITION P1 VALUES LESS THAN (TO_DATE('01/01/2025', 'DD/MM/YYYY')));  
+CREATE INDEX vccb_atom_pos_mid_tid_idx ON vccb_atom_pos_settl_txn_imp (MERCHANT_ID,TERMINAL_ID);
+CREATE INDEX vccb_atom_pos_txn_id_idx ON vccb_atom_pos_settl_txn_imp (txn_id);
+CREATE INDEX vccb_atom_pos_ref_idx ON vccb_atom_pos_settl_txn_imp (retrieval_ref_no)
+

@@ -1,0 +1,44 @@
+-- Create table
+create table VCCB_ACQ_ACCOUNTING_FC
+(
+  file_id               NUMBER(10),
+  imp_rec_id            NUMBER(22),
+  priority              NUMBER(22),
+  group_name            CHAR(1),
+  acq_bank_code         VARCHAR2(10),
+  merchant_name         VARCHAR2(250),
+  merchant_id           VARCHAR2(20),
+  terminal_id           VARCHAR2(20),
+  retrieval_ref_no      VARCHAR2(15),
+  txn_id                VARCHAR2(50),
+  batch_no              VARCHAR2(15),
+  posting_name          VARCHAR2(500),
+  debit_branch_code     VARCHAR2(15),
+  debit_account_number  VARCHAR2(30),
+  debit_account_name    VARCHAR2(250),
+  currency              CHAR(3),
+  posting_amt           NUMBER(18,2),
+  credit_branch_code    VARCHAR2(15),
+  credit_account_number VARCHAR2(30),
+  credit_account_name   VARCHAR2(250),
+  narrative             VARCHAR2(1000),
+  rrn                   VARCHAR2(20),
+  posting_date          DATE,
+  fc_resultcode         VARCHAR2(10),
+  fc_resultdesc         VARCHAR2(500),
+  fc_ref                VARCHAR2(100),
+  is_processed          NUMBER(1),
+  is_successed          NUMBER(1),
+  status                NVARCHAR2(250),
+  run_number            NUMBER(2),
+  error_message         VARCHAR2(500),
+  process_dt            DATE,
+  imp_session           NUMBER(3),
+  rec_created_date      DATE,
+  rec_updated_date      DATE
+)
+PARTITION BY RANGE(process_dt) INTERVAL (NUMTOYMINTERVAL(1,'MONTH'))  
+(PARTITION P1 VALUES LESS THAN (TO_DATE('01/01/2025', 'DD/MM/YYYY')));  
+CREATE INDEX VCCB_ACQ_ACC_FC_ID_IDX ON VCCB_ACQ_ACCOUNTING_FC (file_id,imp_rec_id);
+CREATE INDEX VCCB_ACQ_ACC_FC_ref_IDX ON VCCB_ACQ_ACCOUNTING_FC (retrieval_ref_no);
+CREATE INDEX VCCB_ACQ_ACC_FC_txn_IDX ON VCCB_ACQ_ACCOUNTING_FC (txn_id);

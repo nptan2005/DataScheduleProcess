@@ -1,0 +1,57 @@
+1. create các seq:
+- vccb_schedule_id_seq >>> seq bảng config schedule 
+	+ file execute: vccb_schedule_id_seq.sql
+- vccb_fc_rrn_seq >>> seq gen rrn hạch toán FC
+	+ file execute: vccb_rrn_seq.sql
+- vccb_schedule_imp_seq >>> seq key định danh và lưu trữ log file import
+	+ file execute: vccb_schedule_imp_seq.sql
+2. create table liên quan service:
+- VCCB_SCHEDULE_JOB: table chưa config task theo schedule
+	+ file execute: VCCB_SCHEDULE_JOB.sql
+- VCCB_JOB_FREQUENCY: table chứa cấu hình các task extend trên  bảng VCCB_SCHEDULE_JOB >>> thực thi theo tham số thường xuyên: vd 5ph/lần
+	+ file execute: VCCB_JOB_FREQUENCY.sql
+- VCCB_SCHEDULE_JOB_HIS: table chứa log run task
+	+ file execute : VCCB_SCHEDULE_JOB_HIS.sql
+- VCCB_PRO_ERROR_HISTORY: table chứa log error execute prc
+	+ file execute: VCCB_PRO_ERROR_HISTORY.sql
+- VCCB_SERVICE_IMPORT_LOG: log file import
+	+ file execute: VCCB_SERVICE_IMPORT_LOG.sql
+3. create package liên quan service:
+- bvbpks_schedule_api
+	+ file execute: bvbpks_schedule_api.pck
+4. create table ACQ POS hạch toán:
+- VCCB_ATOM_POS_SETTL_TXN_TMP >>> temp table chứa data import theo, logic truncate và import mới
+	+ file execute: VCCB_ATOM_POS_SETTL_TXN_TMP.sql
+- vccb_atom_pos_settl_txn_imp: table lưu dữ liệu GD từ atom
+	+ file execute: vccb_atom_pos_settl_txn_imp.sql
+- VCCB_ACQ_BANK_BENEFIT_ACCT_TMP: >>> temp table chứa data import theo, logic truncate và import mới
+	+ file execute: VCCB_ACQ_BANK_BENEFIT_ACCT_TMP.sql
+- VCCB_ACQ_BANK_BENEFIT_ACCT: chứa thông tin tài khoản hạch toán
+	+ file execute: VCCB_ACQ_BANK_BENEFIT_ACCT.sql
+- VCCB_RECONCILIATION_STB_TMP: 	>>> temp table chứa data doi soat , logic truncate và import mới
+	+ file_execute: VCCB_RECONCILIATION_STB_TMP.sql
+- VCCB_RECONCILIATION_STB_IMP: table chưa giao dịch đối soát từ STB
+	+ file_execute: VCCB_RECONCILIATION_STB_IMP.sql
+- VCCB_RECONCILIATION_VPB_TMP: >> temp table chứa data doi soat , logic truncate và import mới
+	+ file_execute: VCCB_RECONCILIATION_VPB_TMP.sql
+- VCCB_RECONCILIATION_VPB_IMP: chưa thông tin giao dịch đối soát từ VPBank
+	+ file_execute: VCCB_RECONCILIATION_VPB_IMP.sql
+- VCCB_ACQ_ACCOUNTING_FC: table chưa giao dịch hạch toán FC
+	+ file_execute: VCCB_ACQ_ACCOUNTING_FC.sql
+5. build package: bvbpks_Acq_Pos_Api >>> logi hach toan
+	+ file bvbpks_Acq_Pos_Api.pck
+6. Tạo view báo cáo:
+- VCCB_ACQ_BANK_TOTAL_TXN_RPT_VV
+	+ file: VCCB_ACQ_BANK_TOTAL_TXN_RPT_VV.sql
+- VCCB_ACQ_MER_TOTAL_TXN_RPT_VV
+	+ file: VCCB_ACQ_MER_TOTAL_TXN_RPT_VV.sql
+- VCCB_ACQ_ACCT_RPT_VV
+	+ file: VCCB_ACQ_ACCT_RPT_VV.sql
+- VCCB_ACQ_ACC_TO_FC_STT_RPT_VV
+	+ file: VCCB_ACQ_ACC_TO_FC_STT_RPT_VV.sql
+7. insert config data:
+- insert VCCB_SCHEDULE_JOB and VCCB_JOB_FREQUENCY
+	+ file:schedule_acq_data.sql
+8. export config để cross-check:
+	+ select * from VCCB_JOB_frequency
+	+ select * from Vccb_Schedule_Job

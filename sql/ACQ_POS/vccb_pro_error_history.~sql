@@ -1,0 +1,21 @@
+create table vccb_pro_error_history
+(
+       task varchar2(255),
+       error_msg varchar2(4000),
+       note varchar2(4000),
+       error_date date,
+       task_id number(20)
+)
+;
+
+select * from VCCB_SERVICE_IMPORT_LOG
+
+SELECT * FROM all_tables WHERE table_name = 'VCCB_SERVICE_IMPORT_LOG'
+
+EXECUTE IMMEDIATE 'TRUNCATE TABLE VCCB_SERVICE_IMPORT_LOG'
+
+select to_char(sysdate + 3,'D') from dual
+
+select * from vccb_pro_error_history
+
+

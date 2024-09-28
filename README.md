@@ -3,76 +3,129 @@
 ## Tổng quan
 Dự án này xử lý việc lên lịch, thực thi và lưu trữ dữ liệu sau khi xử lý. Nó tích hợp với cơ sở dữ liệu Oracle, các server SFTP và dịch vụ email.
 
-### Cấu trúc thư mục
+
+# Cấu trúc Thư mục Dự án
+
+## TaskService
+
+```python
 TaskService/
-|__ Archived/
-|__ Data/
-|__ configurable/
-|__ bin/
-|__ core/
-|   |__ conn_kit/
-|   |__ core_config/
-|   |__ data_kit/
-|   |__ ISO8583Message/
-|   |__ multiAlgoCoder/
-|   |__ utilities/
-|__ externalTaskModule/
-|__ task_flow/
-|   |__ model/
-|   |__ task_data/
-|   |__ task_business/
-|   |__ task_engine/
-|   |__ task_queue/
-|   |__ taskController.py
-|   |__ taskDispatcher.py
-|   |__ taskProcessor.py
-|   |__ taskScheduler.py
-|__ main.py
-|__ encode_password.py
-|__ test_job.py
-|__ pyproject.toml
-
-
-
-SchedulerService/
-│
+├── Archived/
+├── Data/
+├── configurable/
+├── bin/
 ├── core/
 │   ├── conn_kit/
-│   │   ├── src/
-│   │   │   ├── connKitConstant.py
-│   │   └── __init__.py
-│   ├── data_kit/
-│   │   ├── src/
-│   │   │   ├── dataConstant.py
-│   │   └── __init__.py
-│   └── __init__.py
-└── __init__.py
-
-
-SchedulerService/
-│
-├── core/
-│   ├── conn_kit/
-│   │   ├── src/
-│   │   │   ├── __init__.py
-│   │   │   ├── connKitConstant.py
-│   │   └── pyproject.toml
-│   ├── data_kit/
-│   │   ├── src/
-│   │   │   ├── __init__.py
-│   │   │   ├── dataConstant.py
-│   │   └── pyproject.toml
-│   ├── utilities/
-│   │   ├── src/
-│   │   │   ├── __init__.py
-│   │   └── pyproject.toml
 │   ├── core_config/
-│   │   ├── src/
-│   │   │   ├── __init__.py
-│   │   └── pyproject.toml
-│   └── __init__.py
+│   ├── data_kit/
+│   ├── ISO8583Message/
+│   ├── multiAlgoCoder/
+│   └── utilities/
+├── externalTaskModule/
+├── task_flow/
+│   ├── model/
+│   ├── task_data/
+│   ├── task_business/
+│   ├── task_engine/
+│   ├── task_queue/
+│   ├── taskController.py
+│   ├── taskDispatcher.py
+│   ├── taskProcessor.py
+│   └── taskScheduler.py
+├── main.py
+├── encode_password.py
+├── test_job.py
 └── pyproject.toml
+```
 
+# Cấu trúc Thư mục Dự án (table))
+
+| Thư mục                  | Nội dung                                                                 |
+|-------------------------|--------------------------------------------------------------------------|
+| **TaskService/**        | - Archived/ <br> - Data/ <br> - configurable/ <br> - bin/ <br> - core/ <br> - externalTaskModule/ <br> - task_flow/ <br> - main.py <br> - encode_password.py <br> - test_job.py <br> - pyproject.toml |
+| **SchedulerService/**    | - core/ <br> - conn_kit/ <br> - data_kit/ <br> - utilities/ <br> - pyproject.toml |
+
+# Cấu trúc Thư mục Dự án (list))
+
+## TaskService
+1. **Archived/**
+2. **Data/**
+3. **configurable/**
+4. **bin/**
+5. **core/**
+   - conn_kit/
+   - core_config/
+   - data_kit/
+   - ISO8583Message/
+   - multiAlgoCoder/
+   - utilities/
+6. **externalTaskModule/**
+7. **task_flow/**
+   - model/
+   - task_data/
+   - task_business/
+   - task_engine/
+   - task_queue/
+   - taskController.py
+   - taskDispatcher.py
+   - taskProcessor.py
+   - taskScheduler.py
+8. **main.py**
+9. **encode_password.py**
+10. **test_job.py**
+11. **pyproject.toml**
+
+## SchedulerService
+1. **core/**
+2. **conn_kit/**
+   - **src/**
+     - connKitConstant.py
+3. **data_kit/**
+   - **src/**
+     - dataConstant.py
+4. **utilities/**
+   - **src/**
+5. **pyproject.toml**
+
+## SchedulerService
+```
+SchedulerService/
+├── core/
+│   ├── conn_kit/
+│   │   ├── src/
+│   │   │   └── connKitConstant.py
+│   ├── data_kit/
+│   │   ├── src/
+│   │   │   └── dataConstant.py
+│   └── utilities/
+│       └── src/
+└── pyproject.toml
+```
+## SchedulerService (Bổ sung)
+```
+SchedulerService/
+├── core/
+├── conn_kit/
+│   ├── src/
+│   │   ├── init.py
+│   │   ├── connKitConstant.py
+│   │   └── pyproject.toml
+├── data_kit/
+│   ├── src/
+│   │   ├── init.py
+│   │   ├── dataConstant.py
+│   │   └── pyproject.toml
+├── utilities/
+│   ├── src/
+│   │   ├── init.py
+│   │   └── pyproject.toml
+├── core_config/
+│   ├── src/
+│   │   ├── init.py
+│   │   └── pyproject.toml
+└── init.py
+└── pyproject.toml
+```
 
 
 - **Logs**: Lưu trữ log của ứng dụng.
@@ -110,7 +163,11 @@ SchedulerService/
     curl -sSL https://install.python-poetry.org | python3 -
     export PATH="$HOME/.local/bin:$PATH"
     poetry --version
-
+2. **Clone repository**:
+    a. clone
+    https://github.com/nptan2005/DataScheduleProcess.git
+    b. Cài đặt phụ thuộc:
+    poetry install
 3. **Tao folder chuong trinh**:
    mkdir ~/TaskService
    cd ~/TaskService
@@ -180,6 +237,11 @@ SchedulerService/
 
     # Thư mục TaskService
     chmod -R 755 ~/TaskService
+
+    # khởi động dịch vụ:
+    sudo systemctl daemon-reload
+    sudo systemctl enable task_shedule_service
+    sudo systemctl start task_shedule_service
 
 12. **Yeu cau mo allow sftp**:
 13. **Yeu cau allow connect database**:
